@@ -19,7 +19,7 @@ services:
       - ./service_books/:/app
     environment:
       - PORT=3002
-      - COUNTER_URL=http://localhost:3003
+      - COUNTER_URL=http://counter:3003
     ports:
       - 80:3002
     command: npm run dev
