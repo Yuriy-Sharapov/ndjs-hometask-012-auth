@@ -1,4 +1,4 @@
-### 1. Реализуйте API:
+### Задание 1. Реализуйте API:
 
 ```javascript
 GET /api/user/login   страница с формой входа / регистрации
@@ -7,7 +7,7 @@ POST /api/user/login
 POST /api/user/signup
 ```
 
-### 2. Настройте локальную аутентификацию с помощью PassportJS.
+### Задание 2. Настройте локальную аутентификацию с помощью PassportJS.
 
 :white_check_mark: РЕШЕНИЕ:
 
