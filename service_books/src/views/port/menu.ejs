@@ -17,6 +17,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="/books">Список книг</a>
             </li>
+            <% if (!user) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/login">Войти</a>
+                </li> 
+            <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/profile/<%= user.id %>"><%= user.username %></a>
+                </li>                 
+            <% } %>
+            <% if (!user) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/signup">Зарегистрироваться</a>
+                </li>                
+            <% } %>            
         </ul>
     </div>
 </nav>

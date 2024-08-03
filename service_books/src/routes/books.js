@@ -18,6 +18,7 @@ router.get('/books', (req, res) => {
 
     res.render("books/index", {
         title: "Список книг",
+        user: req.user,
         books: books,
     });    
 }) 
@@ -26,6 +27,7 @@ router.get('/books', (req, res) => {
 router.get('/books/create', (req, res) => {
     res.render("books/create", {
         title: "Добавить новую книгу",
+        user: req.user,
         book: {}
     })
 })
@@ -72,6 +74,7 @@ router.get('/books/:id', async(req, res) => {
 
     res.render("books/view", {
         title: "Просмотреть карточку книги",
+        user: req.user,
         book: books[idx],
         cnt: cnt
     })
@@ -89,6 +92,7 @@ router.get('/books/update/:id', (req, res) => {
 
     res.render("books/update", {
         title: "Редактирование атрибутов книги",
+        user: req.user,
         book: books[idx],
     })
 })
