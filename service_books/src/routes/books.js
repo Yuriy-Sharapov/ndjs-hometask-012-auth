@@ -55,18 +55,13 @@ router.get('/books/:id', async(req, res) => {
         res.redirect('/404')
     
     const COUNTER_URL = process.env.COUNTER_URL || "http://localhost:3003"
-    //const COUNTER_URL = "http://localhost:3003"
-    console.log(COUNTER_URL)
     const access_url = `${COUNTER_URL}/counter/${books[idx].title}`
-    console.log(access_url)
 
-    const cnt = 0
+    let cnt = 0
     try {
         await axios.post(`${access_url}/incr`);
         const axios_res = await axios.get(access_url);
-        console.log(axios_res)
-        cnt = axios_res.cnt
-        console.log(cnt)
+        cnt = axios_res.data.cnt
     } catch (e) { 
         console.log('Ошибка при работе с axios')
         console.log(e)
@@ -148,22 +143,23 @@ router.get('/books/:id/download', (req, res) => {
 
     const {books} = stor
     const {id} = req.params
-    
+
     // Ищем книгу в хранилище по названию, которое передали через параметры
     // В хранилище книга должна иметь сответствующее название fileName
-    const idx = books.findIndex( el => el.id === id)    
-    
+    const idx = books.findIndex( el => el.id === id)   
+
     if (idx === -1)
         return res.redirect('/404');
-        // return res.status(404).send('Книга не найдена')
     
     // Формируем путь до книги
     const filePath = path.resolve(__dirname, "..", books[idx].fileBook)
 
     // Проверка, существует ли файл
     fs.access(filePath, fs.constants.F_OK, (err) => {
-        if (err) 
+        if (err) {
+            console.log(err)
             return res.redirect('/404');
+        }
             // return res.status(404).send('Файл не найден')
 
         // Отправка файла на скачивание

@@ -23,7 +23,7 @@
                 </li> 
             <% } else { %>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/profile/<%= user.id %>"><%= user.username %></a>
+                    <a class="nav-link" href="/user/profile"><%= user.displayName %></a>
                 </li>                 
             <% } %>
             <% if (!user) { %>
